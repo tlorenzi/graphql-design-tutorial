@@ -457,30 +457,8 @@ enum CollectionRuleRelation {
 
 ## Step Four: Business Logic
 
-We now have a minimal but well-designed GraphQL API for collections. There is a
-lot of detail to collections that we haven't dealt with - any real
-implementation of this feature would need a lot more fields to deal with things
-like product sort order, publishing, etc. - but as a rule those fields will all
-follow the same design patterns laid out here. However, there are still a few
-things which bear looking at in more detail.
-
-For this section, it is most convenient to start with a motivating use case from
-the hypothetical client of our API. Let us therefore imagine that the client
-developer we have been working with needs to know something very specific:
-whether a given product is a member of a collection or not. Of course, this is
-something that the client can already answer with our existing API: we expose
-the complete set of products in a collection, so the client simply has to
-iterate through, looking for the product they care about.
-
-This solution has two problems though. The first, obvious problem is that it's
-inefficient; collections can contain millions of products, and having the client
-fetch and iterate through them all would be extremely slow. The second, bigger
-problem, is that it requires the client to write code. This last point is a
-critical piece of design philosophy: the server should always be the single
-source of truth for any business logic. An API almost always exists to serve
-more than one client, and if each of those clients has to implement the same
-logic then you've effectively got code duplication, with all the extra work and
-room for error which that entails.
+An API almost always exists to serve more than one client, and if each of those clients has to implement the same
+logic then you've effectively got code duplication, with all the extra work and room for error which that entails.
 
 *Rule #12: The API should provide business logic, not just data. Complex
 calculations should be done on the server, in one place, not on the client, in
@@ -495,12 +473,7 @@ type Collection implements Node {
 }
 ```
 This field takes the ID of a product and returns a boolean based on the server
-determining if a product is in the collection or not. The fact that this sort-of
-duplicates the data from the existing `products` field is irrelevant. GraphQL
-returns only what clients explicitly ask for, so unlike REST it does not cost us
-anything to add a bunch of secondary fields. The client doesn't have to write
-any code beyond querying an additional field, and the total bandwidth used is a
-single ID plus a single boolean.
+determining if a product is in the collection or not. 
 
 One follow-up warning though: just because we're providing business logic in a
 situation does not mean we don't have to provide the raw data too. Clients
