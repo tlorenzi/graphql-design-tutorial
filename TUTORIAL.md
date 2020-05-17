@@ -1,9 +1,7 @@
 
 ## Step Zero: Background
 
-imagine you work at an e-commerce company.
-You have an existing GraphQL API exposing information about your products; your team just finished a project implementing
-"collections" in the back-end and wants to expose collections over the API as well.
+imagine you work at an e-commerce company. You have an existing GraphQL API exposing information about your products; your team just finished a project implementing "collections" in the back-end and wants to expose collections over the API as well.
 
 On the back-end, your new feature has been implemented as follows:
 - All collections have some simple attributes like a title, a description body
@@ -15,8 +13,6 @@ On the back-end, your new feature has been implemented as follows:
   join table in the middle called `CollectionMembership`.
 - Collections, like products before them, can be either published (visible on
   the storefront) or not.
-
-With this background, you're ready to start thinking about your API design.
 
 ## Step One: A Bird's-Eye View
 
@@ -61,10 +57,7 @@ type CollectionMembership {
 }
 ```
 
-This is already decently complicated at a glance, even though it's only four
-objects and an interface. It also clearly doesn't implement all of the features
-that we would need if we're going to be using this API to build out e.g. our
-mobile app's collection feature.
+This clearly doesn't implement all of the features that we would need if we're going to be using this API to build out e.g. our mobile app's collection feature.
 
 Let's take a step back. A decently complex GraphQL API will consist of many
 objects, related via multiple paths and with dozens of fields. Trying to design
@@ -99,12 +92,6 @@ type CollectionMembership {
   Product
 }
 ```
-
-To get this simplified representation, I took out all scalar fields, all field
-names, and all nullability information. What you're left with still looks kind
-of like GraphQL but lets you focus on higher level of the types and their
-relationships.
-
 *Rule #1: Always start with a high-level view of the objects and their
 relationships before you deal with specific fields.*
 
