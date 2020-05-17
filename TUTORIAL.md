@@ -515,14 +515,6 @@ resulting in the following mutation list:
 
 ### Manipulating Relationships
 
-The `update` mutation still has far too many responsibilities so it makes sense
-to continue splitting it up, but we will deal with these actions separately
-since they're worth thinking about from another dimension as well: the
-manipulation of object relationships (e.g. one-to-many, many-to-many). We've
-already considered the use of IDs vs embedding, and the use of pagination vs
-arrays in the read API, and there are some similar issues to deal with when
-mutating these relationships.
-
 For the relationship between products and collections, there are a couple of
 styles we could broadly consider:
 - Embedding the entire relationship (e.g. `products: [ProductInput!]!`) into the
