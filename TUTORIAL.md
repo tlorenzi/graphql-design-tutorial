@@ -1,17 +1,9 @@
 
 ## Step Zero: Background
 
-For the purposes of this tutorial, imagine you work at an e-commerce company.
-You have an existing GraphQL API exposing information about your products, but
-very little else. However, your team just finished a project implementing
-"collections" in the back-end and wants to expose collections over the API as
-well.
-
-Collections are the new go-to method for grouping products; for example, you
-might have a collection of all of your t-shirts. Collections can be used for
-display purposes when browsing your website, and also for programmatic tasks
-(e.g. you may want to make a discount only apply to products in a certain
-collection).
+imagine you work at an e-commerce company.
+You have an existing GraphQL API exposing information about your products; your team just finished a project implementing
+"collections" in the back-end and wants to expose collections over the API as well.
 
 On the back-end, your new feature has been implemented as follows:
 - All collections have some simple attributes like a title, a description body
