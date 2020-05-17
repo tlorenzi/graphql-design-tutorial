@@ -13,6 +13,7 @@ On the back-end, your new feature has been implemented as follows:
   join table in the middle called `CollectionMembership`.
 - Collections, like products before them, can be either published (visible on
   the storefront) or not.
+- collector join table
 
 ## Step One: A Bird's-Eye View
 
@@ -97,15 +98,10 @@ relationships before you deal with specific fields.*
 
 ## Step Two: A Clean Slate
 
-Now that we have something simple to work with, we can address the major flaws
-with this design.
+lets address the major flaws with this design.
 
-As previously mentioned, our implementation defines the existence of manual and
-automatic collections, as well as the use of a collector join table. Our naive
-API design was clearly structured around our implementation, but this was a
-mistake.
-
-The root problem with this approach is that an API operates for a different
+Our naive API design was clearly structured around our implementation, but this was a
+mistake. The root problem with this approach is that an API operates for a different
 purpose than an implementation, and frequently at a different level of
 abstraction. In this case, our implementation has led us astray on a number of
 different fronts.
@@ -149,9 +145,7 @@ This is much better.
 
 ### Representing Collections
 
-This API design still has one major flaw, though it's one that's probably much
-less obvious without a really thorough understanding of the business domain. In
-our existing design, we model AutomaticCollections and ManualCollections as two
+This API design still has one major flaw. In our existing design, we model AutomaticCollections and ManualCollections as two
 different types, each implementing a common Collection interface. Intuitively
 this makes a fair bit of sense: they have a lot of common fields, but are
 still distinctly different in their relationships (AutomaticCollections have
@@ -181,30 +175,6 @@ That's really nice. The immediate concern you may have at this point is that
 we're now pretending ManualCollections have rules, but remember that this
 relationship is a list. In our new API design, a "ManualCollection" is just a
 Collection whose list of rules is empty.
-
-### Conclusion
-
-Choosing the best API design at this level of abstraction necessarily requires
-you to have a very deep understanding of the problem domain you're modeling.
-It's hard in a tutorial setting to provide that depth of context for a specific
-topic, but hopefully the collection design is simple enough that the reasoning
-still makes sense. Even if you don't have this depth of understanding
-specifically for collections, you still absolutely need it for whatever domain
-you're actually modeling. It is critically important when designing your API
-that you ask yourself these tough questions, and don't just blindly follow the
-implementation.
-
-On a closely related note, a good API does not model the user interface either.
-The implementation and the UI can both be used for inspiration and input into
-your API design, but the final driver of your decisions must always be the
-business domain.
-
-Even more importantly, existing REST API choices should not necessarily be
-copied. The design principles behind REST and GraphQL can lead to very different
-choices, so don't assume that what worked for your REST API is a good choice for
-GraphQL.
-
-As much as possible let go of your baggage and start from scratch.
 
 *Rule #3: Design your API around the business domain, not the implementation,
 user-interface, or legacy APIs.*
