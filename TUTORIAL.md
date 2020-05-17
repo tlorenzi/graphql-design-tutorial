@@ -491,14 +491,8 @@ isn't right.
 
 ## Step Five: Mutations
 
-The final missing piece of our GraphQL schema design is the ability to actually
-change values: creating, updating, and deleting collections and related pieces.
-As with the readable portion of the schema we should start with a high-level
-view: in this case, of just the various mutations we will want to implement,
-without worrying about their specific inputs or outputs. Naively we might follow
-the CRUD paradigm and have just `create`, `delete`, and `update` mutations.
-While this is a decent starting place, it is insufficient for a proper GraphQL
-API.
+Naively we might follow the CRUD paradigm and have just `create`, `delete`, and `update` mutations.
+While this is a decent starting place, it is insufficient for a proper GraphQL API.
 
 ### Separate Logical Actions
 
