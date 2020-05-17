@@ -330,7 +330,7 @@ strings as meaning "applicable, but not populated", and null strings meaning
 
 ### IDs and Relations
 
-Now we come to the `imageId` field. This field is a classic example of what
+Now the `imageId` field. This field is a classic example of what
 happens when you try and apply REST designs to GraphQL. In REST APIs it's
 pretty common to include the IDs of other objects in your response as a way to
 link together those objects, but this is a major anti-pattern in GraphQL.
@@ -375,34 +375,13 @@ type CollectionRule {
 
 ### Naming and Scalars
 
-The last field in our simple `Collection` type is `bodyHtml`. To a user who is
-unfamiliar with the way that collections were implemented, it's not entirely
-obvious what this field is for; it's the body description of the specific
-collection. The first thing we can do to make this API better is just to rename
-it to `description`, which is a much clearer name.
+rename `bodyHtml` to 'description' to make that the name more clear of what it is for.
 
 *Rule #9: Choose field names based on what makes sense, not based on the
 implementation or what the field is called in legacy APIs.*
 
-Next, we can make it non-nullable. As we talked about with the title field, it
-doesn't make sense to distinguish between the field being null and simply being
-an empty string, so we don't expose that in the API. Even if your database
-schema does allow records to have a null value for this column, we can hide that
-at the implementation layer.
-
 Finally, we need to consider if `String` is actually the right type for this
-field. GraphQL provides a decent set of built-in scalar types (`String`, `Int`,
-`Boolean`, etc) but it also lets you define your own, and this is a prime use
-case for that feature. Most schemas define their own set of additional scalars
-depending on their use cases. These provide additional context and semantic
-value for clients. In this case, it probably makes sense to define a custom
-`HTML` scalar for use here (and potentially elsewhere) when the string in
-question must be valid HTML.
-
-Whenever you're adding a scalar field, it's worth checking your existing list of
-custom scalars to see if one of them would be a better fit. If you're adding a
-field and you think a new custom scalar would be appropriate, it's worth talking
-it over with your team to make sure you're capturing the right concept.
+field. 
 
 *Rule #10: Use custom scalar types when you're exposing something with specific
 semantic value.*
