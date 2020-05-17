@@ -237,13 +237,6 @@ type Collection implements Node {
 
 ### Rules and Subobjects
 
-We will consider the next two fields in our Collection type together: `rules`,
-and `rulesApplyDisjunctively`. The first is pretty straightforward: a list of
-rules. Do note that both the list itself and the elements of the list are marked
-as non-null: this is fine, as GraphQL does distinguish between `null` and `[]`
-and `[null]`. For manual collections, this list can be empty, but it cannot be
-null nor can it contain a null.
-
 *Protip: List-type fields are almost always non-null lists with non-null
 elements. If you want a nullable list make sure there is real semantic value in
 being able to distinguish between an empty list and a null one.*
@@ -253,12 +246,7 @@ rules apply disjunctively or not. It is also non-null, but here we run into a
 problem: what value should this field take for manual collections? Making it
 either false or true feels misleading, but making the field nullable then makes
 it a kind of weird tri-state flag which is also awkward when dealing with
-automatic collections. While we're puzzling over this, there is one other thing
-that is worth mentioning: these two fields are obviously and intricately related.
-This is true semantically, and it's also hinted by the fact that we chose names
-with a shared prefix. Is there a way to indicate this relationship in the schema
-somehow?
-
+automatic collections. these two fields are obviously and intricately related.
 As a matter of fact, we can solve all of these problems in one fell swoop by
 deviating even further from our underlying implementation and introducing a new
 GraphQL type with no direct model equivalent: `CollectionRuleSet`. This is often
@@ -342,10 +330,6 @@ type PageInfo {
 *Rule #7: Always check whether list fields should be paginated or not.*
 
 ###  Strings
-
-Next up is the `title` field. This one is legitimately fine the way it is. It's
-a simple string, and it's marked non-null because all collections must have a
-title.
 
 *Protip: As with booleans and lists, it's worth noting that GraphQL does
 distinguish between empty strings (`""`) and nulls (`null`), so if you need a
