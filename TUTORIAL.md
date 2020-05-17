@@ -1,25 +1,3 @@
-# Tutorial: Designing a GraphQL API
-
-This tutorial was created by [Shopify](https://www.shopify.ca/) for internal
-purposes. We've created a public version of it since we think it's useful to
-anyone creating a GraphQL API.
-
-It's based on lessons learned from creating and evolving production schemas at
-Shopify over almost 3 years. The tutorial has evolved and will continue to
-change in the future so nothing is set in stone.
-
-We believe these design guidelines work in most cases. They may not all work
-for you. Even within the company we still question them and have exceptions
-since most rules can't apply 100% of the time. So don't just blindly copy and
-implement all of them. Pick and choose which ones make sense for you and your
-use cases.
- 
-## Intro
-
-Welcome! This document will walk you through designing a new GraphQL API (or a
-new piece of an existing GraphQL API). API design is a challenging
-task that strongly rewards iteration, experimentation, and a thorough
-understanding of your business domain.
 
 ## Step Zero: Background
 
