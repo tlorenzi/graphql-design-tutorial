@@ -288,18 +288,8 @@ indicate a bigger design flaw.*
 
 ### Lists and Pagination
 
-Next on the chopping block is our `products` field. This one might seem safe;
-after all we already "fixed" this relation back when we removed our `CollectionMembership`
-type, but in fact there's something else wrong here.
-
-The field as currently defined returns an array of products, but collections can
-easily have many tens of thousands of products, and trying to gather all of
-those into a single array would be incredibly expensive and inefficient. For
-situations like this, GraphQL provides lists pagination.
-
-Whenever you implement a field or relation returning multiple objects, always
-ask yourself if the field should be paginated or not. How many of this object
-can there be? What quantity is considered pathological?
+Next on the chopping block is our `products` field, we need pagination. always
+ask yourself if a field should be paginated.
 
 Paginating a field means you need to implement a pagination solution first.
 This tutorial uses [Connections](https://graphql.org/learn/pagination/#complete-connection-model)
