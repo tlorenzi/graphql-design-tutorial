@@ -181,17 +181,9 @@ user-interface, or legacy APIs.*
 
 ## Step Three: Adding Detail
 
-Now that we have a clean structure to model our types, we can add back our
-fields and start to work at that level of detail again.
-
-Before we start adding detail, ask yourself if it's really needed at this
-time. Just because a database column, model property, or REST attribute may
-exist, doesn't mean it automatically needs to be added to the GraphQL schema.
-
+lets add back our fields and start to work at that level of detail again.
 Exposing a schema element (field, argument, type, etc) should be driven by an
-actual need and use case. GraphQL schemas can easily be evolved by adding
-elements, but changing or removing them are breaking changes and much more
-difficult.
+actual need and use case. 
 
 *Rule #4: It's easier to add fields than to remove them.*
 
@@ -217,15 +209,11 @@ type CollectionRule {
 }
 ```
 
-Now we have a whole new host of design problems to resolve. We'll work through
-the fields in order top to bottom, fixing things as we go.
-
 ### IDs and the `Node` Interface
 
 The very first field in our Collection type is an ID field, which is fine and
 normal; this ID is what we'll need to use to identify our collections throughout
-the API, in particular when performing actions like modifying or deleting them.
-However there is one piece missing from this part of our design: the `Node`
+the API. However there is one piece missing from this part of our design: the `Node`
 interface. This is a very commonly-used interface that already exists in most
 schemas and looks like this:
 ```graphql
